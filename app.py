@@ -48,8 +48,9 @@ def hello_world():
         return render_template('main.html')
 
 
-@app.route('/user/<user>')
-def show_user_profile(user):
+@app.route('/user')
+def show_user_profile():
+    user = request.args.get('user')
     return retrieve_data(user)
 
 
