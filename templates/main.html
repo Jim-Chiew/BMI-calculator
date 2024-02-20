@@ -4,35 +4,36 @@
 <head>
   <meta charset="UTF-8">
   <title>BMI Tracker</title>
+
+  <style>
+    .formContainer>* {
+      display: block;
+      margin-top: 15px;
+    }
+
+    .inputField label {
+      display: inline-block;
+      width: 80px;
+    }
+
+    .inputField input {
+      display: inline-block;
+      width: 160px;
+      margin: auto;
+    }
+  </style>
 </head>
 
-<style>
-  .formContainer>* {
-    display: block;
-    margin-top: 15px;
-  }
-
-  .inputField label {
-    display: inline-block;
-    width: 80px;
-  }
-
-  .inputField input {
-    display: inline-block;
-    width: 160px;
-    margin: auto;
-  }
-</style>
-
-<header>
-  <ul>
-    <li class="navigationAnchor"><a href="main.html">Calculator</a></li>
-    <li class="navigationAnchor"><a href="retrieve.html">Retrieve</a></li>
-  </ul>
-</header>
-
 <body>
-  <form action="/" method="post">
+  <header>
+    <ul>
+      <li class="navigationAnchor"><a href="main.html">Calculator</a></li>
+      <li class="navigationAnchor"><a href="retrieve.html">Retrieve</a></li>
+    </ul>
+  </header>
+
+
+  <form action="/" method="get" id="calculatorForm">
     <div class="formContainer">
       <h1>BMI Tracker</h1>
 
@@ -59,6 +60,18 @@
       <button type="submit" class="formBtn">Calculate</button>
     </div>
   </form>
+
+  <script>
+    const calculatorOnSubmit = (e) => {
+      e.preventDefault()
+      
+
+    }
+
+    const calcForm = document.getElementById('calculatorForm')
+
+    calcForm.addEventListener('submit', calculatorOnSubmit)
+  </script>
 </body>
 
 </html>
