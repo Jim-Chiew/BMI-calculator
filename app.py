@@ -1,14 +1,26 @@
 from flask import Flask, render_template, request
 import pickle
+from pandas import DataFrame
 
 
 # ______________ Database_________________
 database = {}
+dict_for_csv = {}
+
+
+def exporting():
+    for users in database:
+        dict_for_csv[database[users].name] = vars(database[users])
+
+    df = DataFrame(dict_for_csv)
+    df.to_csv("users.csv")
+    df.to_json("users.json")
 
 
 def insert_data(user):
     database[user.name] = user
     pickle.dump(database, open('database.pkl', 'wb'))
+    exporting()
 
 
 def retrieve_data(name):
@@ -23,7 +35,7 @@ def retrieve_data(name):
 
 
 # ________________ Calculate _______________
-class User:
+class User(object):
     def __init__(self, name, height, weight):
         self.name = name
         self.height = float(height)
