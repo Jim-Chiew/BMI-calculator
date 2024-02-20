@@ -1,7 +1,7 @@
-,James
-name,James
-dob,2007-01-23
-height,1.5
-weight,70.0
-datetime,2024-02-20 17:07:34.660329
-entry,"[{'datetime': datetime.datetime(2024, 2, 20, 17, 8, 21, 655177), 'height': 1.5, 'weight': 90.0, 'bmi': 40.0}, {'datetime': datetime.datetime(2024, 2, 20, 17, 8, 17, 704036), 'height': 1.5, 'weight': 80.0, 'bmi': 35.55555555555556}, {'datetime': datetime.datetime(2024, 2, 20, 17, 7, 34, 660329), 'height': 1.5, 'weight': 70.0, 'bmi': 31.11111111111111}]"
+,James,james
+name,James,james
+dob,2007-01-23,
+height,1.5,70.0
+weight,70.0,67.0
+datetime,2024-02-20 17:07:34.660329,2024-02-20 17:31:11.329653
+entry,"[{'datetime': datetime.datetime(2024, 2, 20, 17, 8, 21, 655177), 'height': 1.5, 'weight': 90.0, 'bmi': 40.0}, {'datetime': datetime.datetime(2024, 2, 20, 17, 8, 17, 704036), 'height': 1.5, 'weight': 80.0, 'bmi': 35.55555555555556}, {'datetime': datetime.datetime(2024, 2, 20, 17, 7, 34, 660329), 'height': 1.5, 'weight': 70.0, 'bmi': 31.11111111111111}]","[{'datetime': datetime.datetime(2024, 2, 20, 19, 18, 27, 62330), 'height': 1.8, 'weight': 80.0, 'bmi': 24.691358024691358}, {'datetime': datetime.datetime(2024, 2, 20, 19, 15, 37, 116254), 'height': 1.8, 'weight': 80.0, 'bmi': 24.691358024691358}, {'datetime': datetime.datetime(2024, 2, 20, 19, 15, 35, 729860), 'height': 1.8, 'weight': 80.0, 'bmi': 24.691358024691358}, {'datetime': datetime.datetime(2024, 2, 20, 19, 15, 34, 888247), 'height': 1.8, 'weight': 80.0, 'bmi': 24.691358024691358}, {'datetime': datetime.datetime(2024, 2, 20, 19, 14, 35, 545269), 'height': 1.6, 'weight': 75.0, 'bmi': 29.296874999999993}, {'datetime': datetime.datetime(2024, 2, 20, 17, 31, 11, 329653), 'height': 70.0, 'weight': 67.0, 'bmi': 0.013673469387755101}]"

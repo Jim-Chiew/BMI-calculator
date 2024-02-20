@@ -55,6 +55,31 @@ class User(object):
         self.datetime = datetime.now()
         self.entry = [{"datetime": self.datetime, "height": self.height, "weight": self.weight, "bmi": self.bmi()}]
         insert_data(self)
+        self.info = """To increase BMI
+Diet:
+Eating more frequently. Slowly begin to eat 5 to 6 smaller meals during the day.
+Choosing food with lots of nutrients. Set up a routine to eat and drink things you like and that have a lot of nutrients as well as calories. 
+Add extras to your dishes for more calories, such as cheese in casseroles or nut butter on whole-grain toast. You also can add dry milk or liquid milk to foods for extra protein and calories. Some examples are mashed potatoes or soups.
+Try smoothies and shakes. Avoid beverages with few nutrients or calories, such as diet soda.
+Beverages can make you feel full. If that's the case for you, avoid drinking during a meal or before. But make sure you are drinking enough throughout the day.
+
+Exercise:
+45 minutes of running 3 times a week
+Heavy weight lifting
+Calisthenics
+
+To decrease BMI
+Diet:
+High protein and low calorie diet should be taken.
+Drink plenty of fluids
+Eat small portions of meals in short intervals.
+Avoid red meat
+Eat plenty of fruits and vegetables.
+
+Exercise:
+75mins jogging 2 times a week
+Weight lifting
+90mins cycling 1 time a week"""
 
     def bmi(self):
         return self.weight / (self.height * self.height)
