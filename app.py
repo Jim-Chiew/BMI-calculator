@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 import pickle
 from pandas import DataFrame
+import os.path
 
 
 # ______________ Database_________________
@@ -19,7 +20,9 @@ def exporting():
 
 def insert_data(user):
     global database
-    database = pickle.load(open('database.pkl', 'rb'))
+
+    if os.path.isfile("database.pkl"):
+        database = pickle.load(open('database.pkl', 'rb'))
     database[user.name] = user
     pickle.dump(database, open('database.pkl', 'wb'))
     exporting()
@@ -31,9 +34,9 @@ def retrieve_data(name):
 
     if name in database:
         user = database[name]
-        return "User " + user.name + " " + str(user.bmi())
+        return vars(user)
     else:
-        return "User don't exist"
+        return make_response("User not found", 400)
 
 
 # ________________ Calculate _______________
@@ -42,6 +45,7 @@ class User(object):
         self.name = name
         self.height = float(height)
         self.weight = float(weight)
+        self.bmi = self.bmi()
         insert_data(self)
 
     def bmi(self):
@@ -56,8 +60,7 @@ app = Flask(__name__)
 def hello_world():
     if request.method == 'POST':
         usr = User(request.form['name'], request.form['height'], request.form['weight'])
-        ans = 'Welcome ' + usr.name + " " + str(usr.bmi())
-        return ans
+        return vars(usr)
     else:
         return render_template('main.html')
 
@@ -68,4 +71,4 @@ def show_user_profile():
     return retrieve_data(user)
 
 
-app.run()
+app.run(debug=True)
