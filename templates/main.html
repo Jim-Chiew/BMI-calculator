@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <title>BMI Tracker | Calculate</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
 </head>
 
 <body>
   <header>
     <ul>
-      <li class="navigationAnchor active""><a href="main.html">Calculator</a></li>
-      <li class="navigationAnchor"><a href="database.html">Database</a></li>
+      <li class="navigationAnchor active"><a href="/">Calculator</a></li>
+      <li class="navigationAnchor"><a href="/database">Database</a></li>
     </ul>
   </header>
 
@@ -44,6 +44,11 @@
     </div>
   </form>
 
+   <div class="results">
+     <label for="results">BMI Stats</label>
+     <textarea id="results" name="results" rows="30" cols="130" readonly></textarea>
+   </div>
+
   <script>
     const calculatorOnSubmit = async (e) => {
       e.preventDefault()
@@ -56,7 +61,23 @@
       formSubmit.open("POST", "/", true)
       formSubmit.onreadystatechange = () =>{
         if(formSubmit.readyState === 4){
-          console.log(formSubmit.response)
+          const res = JSON.parse(formSubmit.response)
+
+          let resultTextArea = document.getElementById('results')
+          resultTextArea.value = `**STATS**
+Name: ${res.name}
+
+DateTime: ${res.datetime}
+
+Heigth: ${res.height}
+
+Weight: ${res.weight}
+
+BMI: ${res.entry[0].bmi}
+
+**Info**
+${res.info}
+`
         }
       }
 
@@ -66,5 +87,6 @@
     calcForm.addEventListener('submit', calculatorOnSubmit)
   </script>
 </body>
+
 
 </html>

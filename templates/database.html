@@ -4,20 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <title>BMI Tracker | Database</title>
-  <link rel="stylesheet" href="styles.css">
-
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
 </head>
 
 <body>
   <header>
     <ul>
-      <li class="navigationAnchor"><a href="main.html">Calculator</a></li>
-      <li class="navigationAnchor active"><a href="database.html">Database</a></li>
+      <li class="navigationAnchor"><a href="/">Calculator</a></li>
+      <li class="navigationAnchor active"><a href="/database">Database</a></li>
     </ul>
   </header>
 
 
-  <form id="calculatorForm">
+  <form id="userForm">
     <div class="formContainer">
       <h1>BMI Tracker</h1>
 
@@ -26,45 +25,71 @@
         <input type="string" placeholder="Enter Name" name="name" id="name" required>
       </div>
 
-      <div class="inputField">
-        <label for="DOB"><b>Birthday</b></label>
-        <input type="date" placeholder="Enter Birthday" name="DOB" id="DOB" required>
-      </div>
-
-      <div class="inputField">
-        <label for="height"><b>Height</b></label>
-        <input type="number" step=0.1 placeholder="Enter Height" name="height" id="height" required>
-      </div>
-
-      <div class="inputField">
-        <label for="weight"><b>Weight</b></label>
-        <input type="number" step=0.1 placeholder="Enter Weight" name="weight" id="weight" required>
-      </div>
-
       <button type="submit" class="formBtn">Calculate</button>
     </div>
+
+   <div class="results">
+     <label for="results">BMI Stats</label>
+     <textarea id="results" name="results" rows="2" cols="60" readonly></textarea>
+
+     <table id="resultTable">
+       <tr>
+         <th>Date</th>
+         <th>Weight</th>
+         <th>Height</th>
+         <th>BMI</th>
+       </tr>
+
+     </table>
+   </div>
   </form>
 
   <script>
-    const calculatorOnSubmit = async (e) => {
+    const userOnSubmit = async (e) => {
       e.preventDefault()
 
       console.log(e)
-      const formData = new FormData(document.forms.calculatorForm)
-      console.log(formData)
+      const user = document.getElementById('name').value
 
       let formSubmit = new XMLHttpRequest();
-      formSubmit.open("POST", "/", true)
+      formSubmit.open("GET", `/user?user=${user}`, true)
       formSubmit.onreadystatechange = () =>{
         if(formSubmit.readyState === 4){
-          console.log(formSubmit.response)
+          let textArea = document.getElementById('results')
+          if(formSubmit.response == 'User not found'){
+            textArea.value = 'User not found'
+          }
+          else {
+            let res = JSON.parse(formSubmit.response)
+            textArea.value = `Number of entires: ${res.entry.length}`
+            let tableAddOn = ''
+            console.log(res.entry)
+            res.entry.map((entry)=>{
+              tableAddOn += `
+              <tr>
+               <td>${entry.datetime}</td>
+               <td>${entry.weight}</td>
+               <td>${entry.height}</td>
+               <td>${entry.bmi}</td>
+              </tr>
+             `
+            })
+            document.getElementById('resultTable').innerHTML = `<tr>
+         <th>Date</th>
+         <th>Weight</th>
+         <th>Height</th>
+         <th>BMI</th>
+       </tr>`
+            document.getElementById('resultTable').innerHTML += tableAddOn;
+          }
+
         }
       }
 
-      formSubmit.send(formData)
+      formSubmit.send()
     }
-    const calcForm = document.getElementById('calculatorForm')
-    calcForm.addEventListener('submit', calculatorOnSubmit)
+    const userForm = document.getElementById('userForm')
+    userForm.addEventListener('submit', userOnSubmit)
   </script>
 </body>
 
