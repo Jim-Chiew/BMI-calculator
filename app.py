@@ -87,16 +87,21 @@ Weight lifting
 
 # _________________ API _________________-
 app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 
 @app.route("/", methods=['POST', 'GET'])
 def calculate():
     if request.method == 'POST':
+        print(request.form)
         usr = User(request.form['name'], request.form['height'], request.form['weight'], request.form['DOB'])
         return vars(usr)
     else:
         return render_template('main.html')
 
+@app.route("/database")
+def database_page():
+    return render_template('database.html')
 
 @app.route('/user')
 def show_user_profile():

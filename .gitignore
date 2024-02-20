@@ -4,3 +4,7 @@ users.
 .codesandbox
 .devcontainer
 .github
+/.idea
+/Lib
+/Scripts
+pyvenv.cfg

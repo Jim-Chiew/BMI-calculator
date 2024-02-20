@@ -56,3 +56,16 @@ header ul li.active {
     width: 160px;
     margin: auto;
 }
+
+.results label {
+        margin-top:40px;
+    display: block;
+}
+
+table, th, td {
+  border-collapse: collapse;
+  border: 1px solid;
+}
+
+th,td {
+padding:10px;}
