@@ -33,7 +33,7 @@
   </header>
 
 
-  <form action="/" method="get" id="calculatorForm">
+  <form id="calculatorForm">
     <div class="formContainer">
       <h1>BMI Tracker</h1>
 
@@ -62,14 +62,18 @@
   </form>
 
   <script>
-    const calculatorOnSubmit = (e) => {
+    const calculatorOnSubmit = async (e) => {
       e.preventDefault()
-      
 
+      console.log(e)
+      const formData = new FormData(document.forms.calculatorForm)
+      console.log(formData)
+
+      let formSubmit = new XMLHttpRequest();
+      formSubmit.open("POST", "/", true)
+      formSubmit.send(formData)
     }
-
     const calcForm = document.getElementById('calculatorForm')
-
     calcForm.addEventListener('submit', calculatorOnSubmit)
   </script>
 </body>

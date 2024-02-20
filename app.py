@@ -52,13 +52,14 @@ class User(object):
         return self.weight / (self.height * self.height)
 
 
-# _________________ Web people _________________-
+# _________________ API _________________-
 app = Flask(__name__)
 
 
 @app.route("/", methods=['POST', 'GET'])
-def hello_world():
+def calculate():
     if request.method == 'POST':
+        print(request.form)
         usr = User(request.form['name'], request.form['height'], request.form['weight'])
         return vars(usr)
     else:
@@ -71,4 +72,4 @@ def show_user_profile():
     return retrieve_data(user)
 
 
-app.run(debug=True)
+app.run(debug=Truedebug=True)
