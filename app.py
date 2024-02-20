@@ -5,10 +5,10 @@ from pandas import DataFrame
 
 # ______________ Database_________________
 database = {}
-dict_for_csv = {}
 
 
 def exporting():
+    dict_for_csv = {}
     for users in database:
         dict_for_csv[database[users].name] = vars(database[users])
 
@@ -18,6 +18,8 @@ def exporting():
 
 
 def insert_data(user):
+    global database
+    database = pickle.load(open('database.pkl', 'rb'))
     database[user.name] = user
     pickle.dump(database, open('database.pkl', 'wb'))
     exporting()
