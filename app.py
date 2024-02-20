@@ -40,7 +40,6 @@ def retrieve_data(name):
 
     if name in database:
         user = database[name]
-        print(vars(user))
         return vars(user)
     else:
         return make_response("User not found", 400)
