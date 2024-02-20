@@ -67,7 +67,7 @@ app = Flask(__name__)
 @app.route("/", methods=['POST', 'GET'])
 def calculate():
     if request.method == 'POST':
-        usr = User(request.form['name'], request.form['height'], request.form['weight'], request.form['dob'])
+        usr = User(request.form['name'], request.form['height'], request.form['weight'], request.form['DOB'])
         return vars(usr)
     else:
         return render_template('main.html')

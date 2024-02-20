@@ -1,5 +1,7 @@
-,abc
-name,abc
-height,21234.0
-weight,12341234.0
-bmi,0.02737127077000035
+,James
+name,James
+dob,2007-01-23
+height,1.5
+weight,70.0
+datetime,2024-02-20 17:07:34.660329
+entry,"[{'datetime': datetime.datetime(2024, 2, 20, 17, 8, 21, 655177), 'height': 1.5, 'weight': 90.0, 'bmi': 40.0}, {'datetime': datetime.datetime(2024, 2, 20, 17, 8, 17, 704036), 'height': 1.5, 'weight': 80.0, 'bmi': 35.55555555555556}, {'datetime': datetime.datetime(2024, 2, 20, 17, 7, 34, 660329), 'height': 1.5, 'weight': 70.0, 'bmi': 31.11111111111111}]"
