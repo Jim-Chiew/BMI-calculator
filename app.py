@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, make_response
 import pickle
 from pandas import DataFrame
 import os.path
+from datetime import datetime
 
 
 # ______________ Database_________________
@@ -23,7 +24,12 @@ def insert_data(user):
 
     if os.path.isfile("database.pkl"):
         database = pickle.load(open('database.pkl', 'rb'))
-    database[user.name] = user
+
+    if user.name in database:
+        database[user.name].entry.insert(0, {"datetime": user.datetime, "height": user.height, "weight": user.weight, "bmi": user.bmi()})
+    else:
+        database[user.name] = user
+
     pickle.dump(database, open('database.pkl', 'wb'))
     exporting()
 
@@ -34,6 +40,7 @@ def retrieve_data(name):
 
     if name in database:
         user = database[name]
+        print(vars(user))
         return vars(user)
     else:
         return make_response("User not found", 400)
@@ -41,11 +48,13 @@ def retrieve_data(name):
 
 # ________________ Calculate _______________
 class User(object):
-    def __init__(self, name, height, weight):
+    def __init__(self, name, height, weight, dob):
         self.name = name
+        self.dob = dob
         self.height = float(height)
         self.weight = float(weight)
-        self.bmi = self.bmi()
+        self.datetime = datetime.now()
+        self.entry = [{"datetime": self.datetime, "height": self.height, "weight": self.weight, "bmi": self.bmi()}]
         insert_data(self)
 
     def bmi(self):
@@ -59,7 +68,7 @@ app = Flask(__name__)
 @app.route("/", methods=['POST', 'GET'])
 def hello_world():
     if request.method == 'POST':
-        usr = User(request.form['name'], request.form['height'], request.form['weight'])
+        usr = User(request.form['name'], request.form['height'], request.form['weight'], request.form['dob'])
         return vars(usr)
     else:
         return render_template('main.html')
