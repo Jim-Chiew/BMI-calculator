@@ -72,4 +72,4 @@ def show_user_profile():
     return retrieve_data(user)
 
 
-app.run(debug=Truedebug=True)
+app.run(debug=True)

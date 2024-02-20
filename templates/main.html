@@ -71,6 +71,12 @@
 
       let formSubmit = new XMLHttpRequest();
       formSubmit.open("POST", "/", true)
+      formSubmit.onreadystatechange = () =>{
+        if(formSubmit.readyState === 4){
+          console.log(formSubmit.response)
+        }
+      }
+
       formSubmit.send(formData)
     }
     const calcForm = document.getElementById('calculatorForm')
