@@ -47,11 +47,12 @@ def retrieve_data(name):
 
 # ________________ Calculate _______________
 class User(object):
-    def __init__(self, name, height, weight, dob):
+    def __init__(self, name, height, weight, dob, range):
         self.name = name
         self.dob = dob
         self.height = float(height)
         self.weight = float(weight)
+        self.range  = str(range)
         self.datetime = datetime.now()
         self.entry = [{"datetime": self.datetime, "height": self.height, "weight": self.weight, "bmi": self.bmi()}]
         insert_data(self)
@@ -83,7 +84,20 @@ Weight lifting
 
     def bmi(self):
         return self.weight / (self.height * self.height)
-
+        
+    def bmi_range(self):
+	    if bmi(self) < 0:
+		    print("Invalid BMI")
+		    self.range("Invalid")
+	    elif bmi(self) < 18.5:
+		    print("Underweight")
+		    self.range("Underweight")
+	    elif bmi(self) >= 18.5 and bmi(self) < 25.0:
+		    print("Healthy Weight")
+		    self.range("Healthy Weight")
+	    else:
+		    print("Overweight")
+		    self.range("Overweight")
 
 # _________________ API _________________-
 app = Flask(__name__)
