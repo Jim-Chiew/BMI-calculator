@@ -1,7 +1,8 @@
+# use from
 from flask import Flask, render_template, request, make_response
-import pickle
+from pickle import load, dump
 from pandas import DataFrame
-import os.path
+from os import path
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
@@ -23,21 +24,21 @@ def exporting():
 def insert_data(user):
     global database
 
-    if os.path.isfile("database.pkl"):
-        database = pickle.load(open('database.pkl', 'rb'))
+    if path.isfile("database.pkl"):
+        database = load(open('database.pkl', 'rb'))
 
     if user.name in database:
         database[user.name].entry.insert(0, {"datetime": user.datetime, "height": user.height, "weight": user.weight, "bmi": user.bmi, "status": user.status})
     else:
         database[user.name] = user
 
-    pickle.dump(database, open('database.pkl', 'wb'))
+    dump(database, open('database.pkl', 'wb'))
     exporting()
 
 
 def retrieve_data(name):
     global database
-    database = pickle.load(open('database.pkl', 'rb'))
+    database = load(open('database.pkl', 'rb'))
 
     if name in database:
         user = database[name]
@@ -102,7 +103,7 @@ Calisthenics
 """
             elif self.age < 60 and self.status == "Overweight":
                 suggestion = """To decrease BMI
-                Diet: High protein and low calorie diet should be taken.
+Diet: High protein and low calorie diet should be taken.
 Drink plenty of fluids
 Eat small portions of meals in short intervals.
 Avoid red meat
@@ -126,7 +127,7 @@ Exercise:
 """
             elif self.age >= 60 and self.status == "Overweight":
                 suggestion = """To decrease BMI
-                Diet: High protein and low calorie diet should be taken.
+Diet: High protein and low calorie diet should be taken.
 Drink plenty of fluids
 Eat small portions of meals in short intervals.
 Avoid red meat
@@ -149,14 +150,13 @@ Anything else that requires great body effort or produces stress on joints.
 """
             elif self.status == "Invalid":
                 suggestion = "Invalid BMI"
-                print("Invalid BMI")
+                print("you defy physics")
 
             return suggestion
 
 
 # _________________ API _________________-
 app = Flask(__name__)
-app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 
 @app.route("/", methods=['POST', 'GET'])
