@@ -101,8 +101,8 @@ Heavy weight lifting
 Calisthenics
 """
             elif self.age < 60 and self.status == "Overweight":
-                suggestion = """Diet:
-High protein and low calorie diet should be taken.
+                suggestion = """To decrease BMI
+                Diet: High protein and low calorie diet should be taken.
 Drink plenty of fluids
 Eat small portions of meals in short intervals.
 Avoid red meat
@@ -114,8 +114,8 @@ Weight lifting
 90mins cycling 1 time a week
 """
             elif self.age >= 60 and self.status == "Underweight":
-                suggestion = """Diet:
-Eat small meals and snacks regularly throughout the day, rather than attempting to eat three large meals
+                suggestion = """To increase BMI
+Diet: Eat small meals and snacks regularly throughout the day, rather than attempting to eat three large meals
 Keeping a ready supply of healthy snacks (e.g. dried fruits and unsalted nuts) within easy reach around your home
 Avoiding foods containing high levels of sugar or saturated fats, as these are full of empty calories
 Increasing their intake of full-fat milk or cheese; try adding these ingredients to meals or drinks they already consume regularly
@@ -125,8 +125,8 @@ Exercise:
 45 mins of light jogging, 3 times a week
 """
             elif self.age >= 60 and self.status == "Overweight":
-                """Diet:
-High protein and low calorie diet should be taken.
+                suggestion = """To decrease BMI
+                Diet: High protein and low calorie diet should be taken.
 Drink plenty of fluids
 Eat small portions of meals in short intervals.
 Avoid red meat
@@ -148,6 +148,7 @@ Long distance cycling
 Anything else that requires great body effort or produces stress on joints.
 """
             elif self.status == "Invalid":
+                suggestion = "Invalid BMI"
                 print("Invalid BMI")
 
             return suggestion
