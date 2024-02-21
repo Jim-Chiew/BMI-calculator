@@ -1,4 +1,3 @@
-# use from
 from flask import Flask, render_template, request, make_response
 from pickle import load, dump
 from pandas import DataFrame
@@ -28,7 +27,7 @@ def insert_data(user):
         database = load(open('database.pkl', 'rb'))
 
     if user.name in database:
-        database[user.name].entry.insert(0, {"datetime": user.datetime, "height": user.height, "weight": user.weight, "bmi": user.bmi, "status": user.status})
+        database[user.name].entry.insert(0, {"datetime": user.datetime_str, "height": user.height, "weight": user.weight, "bmi": user.bmi, "status": user.status})
     else:
         database[user.name] = user
 
@@ -55,10 +54,11 @@ class User(object):
         self.height = float(height)
         self.weight = float(weight)
         self.datetime = datetime.now()
+        self.datetime_str = str(self.datetime)
         self.age = self.get_age()
         self.bmi = self.bmi()
         self.status = self.bmi_range()
-        self.entry = [{"datetime": self.datetime, "height": self.height, "weight": self.weight, "bmi": self.bmi, "status": self.status}]
+        self.entry = [{"datetime": self.datetime_str, "height": self.height, "weight": self.weight, "bmi": self.bmi, "status": self.status}]
         insert_data(self)
         self.info = self.suggestions()
 
