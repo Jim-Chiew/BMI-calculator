@@ -31,12 +31,12 @@
       </div>
 
       <div class="inputField">
-        <label for="height"><b>Height</b></label>
+        <label for="height"><b>Height (m)</b></label>
         <input type="number" step=0.01 placeholder="Enter Height" name="height" id="height" required>
       </div>
 
       <div class="inputField">
-        <label for="weight"><b>Weight</b></label>
+        <label for="weight"><b>Weight (kg)</b></label>
         <input type="number" step=0.01 placeholder="Enter Weight" name="weight" id="weight" required>
       </div>
 
@@ -64,8 +64,11 @@
           const res = JSON.parse(formSubmit.response)
 
           let resultTextArea = document.getElementById('results')
+          console.log(res)
           resultTextArea.value = `**STATS**
 Name: ${res.name}
+
+Age: ${res.age}
 
 DateTime: ${res.datetime}
 
@@ -74,6 +77,8 @@ Heigth: ${res.height}
 Weight: ${res.weight}
 
 BMI: ${res.entry[0].bmi}
+
+Status: ${res.status}
 
 **Info**
 ${res.info}

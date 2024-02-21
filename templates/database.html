@@ -38,6 +38,7 @@
          <th>Weight</th>
          <th>Height</th>
          <th>BMI</th>
+         <th>Status</th>
        </tr>
 
      </table>
@@ -71,6 +72,7 @@
                <td>${entry.weight}</td>
                <td>${entry.height}</td>
                <td>${entry.bmi}</td>
+               <td>${entry.status}</td>
               </tr>
              `
             })
@@ -79,6 +81,7 @@
          <th>Weight</th>
          <th>Height</th>
          <th>BMI</th>
+         <th>Status</th>
        </tr>`
             document.getElementById('resultTable').innerHTML += tableAddOn;
           }
